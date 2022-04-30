@@ -1,3 +1,3 @@
-export class RegistrationResponseDto {
-  public message: string;
-}
+import { BaseResponseDto } from "src/common/dtos/response.dt";
+
+export class RegistrationResponseDto extends BaseResponseDto {}

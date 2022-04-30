@@ -1,30 +1,29 @@
-import { IsNotEmpty, IsString, IsNumber, IsArray } from "class-validator";
+import { IsNotEmpty, IsString, IsNumber, IsEnum, IsArray } from "class-validator";
+import { CURRENCIES } from "src/common/constants/currencies.constants";
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   readonly companyName: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  readonly internalCode: string;
+  readonly internalCode: number;
 
   @IsString()
   @IsNotEmpty()
   readonly tributaryId: string;
 
-  @IsString()
+  @IsEnum(CURRENCIES)
   @IsNotEmpty()
-  readonly currency: string;
+  readonly currency: CURRENCIES;
 
   @IsNumber()
   @IsNotEmpty()
   readonly apiCalls: number;
 
-  // @IsArray()
-  // @IsString({ each: true })
-  @IsString()
+  @IsArray()
+  @IsNumber({}, { each: true })
   @IsNotEmpty()
-  readonly banks: string;
-
+  readonly banks: number[];
 }

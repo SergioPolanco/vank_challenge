@@ -1,9 +1,12 @@
 import * as Joi from "joi"
 import { Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
+import { ScheduleModule } from '@nestjs/schedule';
 import { DatabaseModule } from "src/database";
 import { UserModule } from "src/users";
 import { RegistrationModule } from "src/registration";
+import { InvoiceModule } from "src/invoices";
+import { BankModule } from "src/banks";
 import { NODE_ENV } from "./constants/app.constants";
 
 @Module({
@@ -15,6 +18,7 @@ import { NODE_ENV } from "./constants/app.constants";
           NODE_ENV.DEVELOPMENT,
           NODE_ENV.PRODUCTION
         ),
+        INVOICE_FILE_URL: Joi.string().required(),
         DB_HOST: Joi.string().required(),
         DB_PORT: Joi.number().required(),
         DB_USER: Joi.string().required(),
@@ -22,9 +26,12 @@ import { NODE_ENV } from "./constants/app.constants";
         DB_NAME: Joi.string().required()
       })
     }),
+    ScheduleModule.forRoot(),
     DatabaseModule,
     RegistrationModule,
-    UserModule
+    UserModule,
+    InvoiceModule,
+    BankModule
   ]
 })
 export class AppModule {}

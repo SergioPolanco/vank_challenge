@@ -1,24 +1,30 @@
+import { Column, Entity, OneToMany, ManyToMany, JoinTable,  PrimaryColumn } from "typeorm";
 import { AbstractEntity } from "src/common/entities/abstract.entity";
-import { Column, Entity, Index } from "typeorm";
+import { InvoiceEntity } from "src/invoices/entities/invoice.entity";
+import { BankEntity } from "src/banks/entities/bank.entity";
+import { CURRENCIES } from "src/common/constants/currencies.constants";
 
 @Entity({ name: 'users' })
 export class UserEntity extends AbstractEntity {
   @Column()
   public companyName: string;
 
-  @Column()
-  public internalCode: string;
+  @PrimaryColumn()
+  public internalCode: number;
 
   @Column()
   public tributaryId: string;
 
   @Column()
-  public currency: string;
+  public currency: CURRENCIES;
 
   @Column()
   public apiCalls: number;
 
-  // TODO: join to table bank
-  @Column()
-  public banks: string;
+  @ManyToMany(() => BankEntity)
+  @JoinTable()
+  public banks: BankEntity[];
+
+  @OneToMany(() => InvoiceEntity, invoice => invoice.vendor)
+  invoices: InvoiceEntity[];
 }

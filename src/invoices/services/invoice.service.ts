@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { lastValueFrom } from "rxjs";
 import { Between } from "typeorm";
-import { CreateInvoiceDto } from "../dtos/invoice.dto";
+import { CreateInvoiceDto } from "../dtos/create-invoice.dto";
 import { QueryStringInvoiceDto } from "../dtos/querystring-invoice.dto";
 import { InvoiceExternalService } from "./invoice-external.service";
 import { InvoiceEntity } from "../entities/invoice.entity";
@@ -64,6 +64,7 @@ export class InvoiceService {
       invoice.total = newTotal;
       invoice.creditTotal = newCreditTotal;
       invoice.paymentTotal = newPaymentTotal;
+      invoice.currency = CURRENCIES[currencyToUse]
     }
 
     return _invoices;

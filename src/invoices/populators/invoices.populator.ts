@@ -1,7 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { lastValueFrom } from "rxjs";
 import { validate } from "class-validator";
-import { CreateInvoiceDto } from "../dtos/invoice.dto";
+import { CreateInvoiceDto } from "../dtos/create-invoice.dto";
 import { UserService } from "src/users/services/user.service";
 import { BankService } from "src/banks/services/bank.service";
 import { InvoiceService } from "../services/invoice.service";

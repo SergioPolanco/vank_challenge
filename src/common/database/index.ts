@@ -16,7 +16,7 @@ import { NODE_ENV } from "src/app/constants/app.constants";
         username: configService.get('DB_USER'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
         namingStrategy: new SnakeNamingStrategy(),
         synchronize: configService.get('NODE_ENV') === NODE_ENV.DEVELOPMENT,
         logging: configService.get('NODE_ENV') === NODE_ENV.DEVELOPMENT

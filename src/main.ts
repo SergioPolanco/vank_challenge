@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app';
 
 async function bootstrap() {
@@ -16,6 +17,16 @@ async function bootstrap() {
     type: VersioningType.URI
   })
   app.setGlobalPrefix(apiVersion)
+
+  // Swagger 
+  const config = new DocumentBuilder()
+    .setTitle('Vank documentation')
+    .setDescription('The Vank API description')
+    .setVersion('1.0')
+    .build();
+  
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
   await app.listen(PORT);
 }
 

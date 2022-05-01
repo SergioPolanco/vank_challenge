@@ -2,7 +2,7 @@ import * as Joi from "joi"
 import { Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
 import { ScheduleModule } from '@nestjs/schedule';
-import { DatabaseModule } from "src/database";
+import { DatabaseModule } from "src/common/database";
 import { UserModule } from "src/users";
 import { RegistrationModule } from "src/registration";
 import { InvoiceModule } from "src/invoices";

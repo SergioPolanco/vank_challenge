@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsNumber, IsEnum } from "class-validator";
-import { CURRENCIES } from "src/common/constants/currencies.constants";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString, IsNumber, IsEnum } from 'class-validator';
+import { CURRENCIES } from 'src/common/constants/currencies.constants';
 
 export class UserDto {
   @IsString()
@@ -22,7 +22,7 @@ export class UserDto {
   @IsNotEmpty()
   @ApiProperty({
     enum: CURRENCIES,
-    description: 'User currency'
+    description: 'User currency',
   })
   readonly currency: CURRENCIES;
 

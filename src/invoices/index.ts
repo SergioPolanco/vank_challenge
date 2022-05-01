@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
@@ -14,15 +14,21 @@ import { InvoiceController } from './controllers/invoice.controller';
 
 @Module({
   imports: [
+    CacheModule.register(),
     TypeOrmModule.forFeature([InvoiceRepository]),
     HttpModule,
     ConfigModule,
     UtilsModule,
     UserModule,
-    BankModule
+    BankModule,
   ],
-  providers: [InvoiceService, InvoiceExternalService, InvoicePopulator, InvoiceTask],
+  providers: [
+    InvoiceService,
+    InvoiceExternalService,
+    InvoicePopulator,
+    InvoiceTask,
+  ],
   exports: [InvoiceService],
-  controllers: [InvoiceController]
+  controllers: [InvoiceController],
 })
 export class InvoiceModule {}

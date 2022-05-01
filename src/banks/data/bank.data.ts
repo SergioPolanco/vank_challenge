@@ -1,24 +1,24 @@
-import { BankDto } from "../dtos/bank.dto"
+import { BankDto } from '../dtos/bank.dto';
 
 export const BANKS: BankDto[] = [
   {
     id: 1,
-    name: 'Santander'
+    name: 'Santander',
   },
   {
     id: 2,
-    name: 'Banco Estado'
+    name: 'Banco Estado',
   },
   {
     id: 3,
-    name: 'Banco de Chile'
+    name: 'Banco de Chile',
   },
   {
     id: 4,
-    name: 'BCI'
+    name: 'BCI',
   },
   {
     id: 5,
-    name: 'Itau'
-  }
-]
+    name: 'Itau',
+  },
+];

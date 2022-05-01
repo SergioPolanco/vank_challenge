@@ -1,3 +1,3 @@
-import { InvoiceDto } from "./invoice.dto";
+import { InvoiceDto } from './invoice.dto';
 
 export class CreateInvoiceDto extends InvoiceDto {}

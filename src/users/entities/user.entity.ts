@@ -1,8 +1,15 @@
-import { Column, Entity, OneToMany, ManyToMany, JoinTable,  PrimaryColumn } from "typeorm";
-import { AbstractEntity } from "src/common/entities/abstract.entity";
-import { InvoiceEntity } from "src/invoices/entities/invoice.entity";
-import { BankEntity } from "src/banks/entities/bank.entity";
-import { CURRENCIES } from "src/common/constants/currencies.constants";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+  PrimaryColumn,
+} from 'typeorm';
+import { AbstractEntity } from 'src/common/entities/abstract.entity';
+import { InvoiceEntity } from 'src/invoices/entities/invoice.entity';
+import { BankEntity } from 'src/banks/entities/bank.entity';
+import { CURRENCIES } from 'src/common/constants/currencies.constants';
 
 @Entity({ name: 'users' })
 export class UserEntity extends AbstractEntity {
@@ -25,6 +32,6 @@ export class UserEntity extends AbstractEntity {
   @JoinTable()
   public banks: BankEntity[];
 
-  @OneToMany(() => InvoiceEntity, invoice => invoice.vendor)
+  @OneToMany(() => InvoiceEntity, (invoice) => invoice.vendor)
   invoices: InvoiceEntity[];
 }

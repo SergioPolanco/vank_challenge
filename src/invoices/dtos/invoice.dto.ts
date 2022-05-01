@@ -1,8 +1,14 @@
-import { IsNotEmpty, IsString, IsNumber, IsEnum, IsDate } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { UserDto } from "src/users/dtos/user.dto";
-import { BankDto } from "src/banks/dtos/bank.dto";
-import { CURRENCIES } from "src/common/constants/currencies.constants";
+import {
+  IsNotEmpty,
+  IsString,
+  IsNumber,
+  IsEnum,
+  IsDate,
+} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { UserDto } from 'src/users/dtos/user.dto';
+import { BankDto } from 'src/banks/dtos/bank.dto';
+import { CURRENCIES } from 'src/common/constants/currencies.constants';
 
 export class InvoiceDto {
   @IsNumber()

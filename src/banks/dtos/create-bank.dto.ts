@@ -1,3 +1,3 @@
-import { BankDto } from "./bank.dto";
+import { BankDto } from './bank.dto';
 
 export class CreateBankDto extends BankDto {}

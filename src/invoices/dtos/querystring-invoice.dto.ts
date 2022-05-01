@@ -1,6 +1,11 @@
-import {IsNumberString, IsDateString, IsOptional, IsEnum } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { CURRENCIES } from "src/common/constants/currencies.constants";
+import {
+  IsNumberString,
+  IsDateString,
+  IsOptional,
+  IsEnum,
+} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { CURRENCIES } from 'src/common/constants/currencies.constants';
 
 export class QueryStringInvoiceDto {
   @IsOptional()

@@ -1,5 +1,5 @@
 import { Controller, Param, Body, Patch } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiOkResponse } from "@nestjs/swagger";
+import { ApiTags, ApiOperation, ApiOkResponse } from '@nestjs/swagger';
 import { UserService } from '../services/user.service';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UpdateUserResponseDto } from '../dtos/update-user-response.dto';
@@ -14,9 +14,9 @@ export class UserController {
   @ApiOkResponse({ type: UpdateUserResponseDto })
   async partialUpdate(
     @Param('id') internalCode: number,
-    @Body() updateUserDto: UpdateUserDto
+    @Body() updateUserDto: UpdateUserDto,
   ): Promise<UpdateUserResponseDto> {
-    const user = await this._userService.update(updateUserDto, internalCode)
-    return user
+    const user = await this._userService.update(updateUserDto, internalCode);
+    return user;
   }
 }

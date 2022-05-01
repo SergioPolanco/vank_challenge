@@ -1,8 +1,8 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { SnakeNamingStrategy } from "typeorm-naming-strategies";
-import { NODE_ENV } from "src/app/constants/app.constants";
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { NODE_ENV } from 'src/app/constants/app.constants';
 
 @Module({
   imports: [
@@ -19,9 +19,9 @@ import { NODE_ENV } from "src/app/constants/app.constants";
         entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
         namingStrategy: new SnakeNamingStrategy(),
         synchronize: configService.get('NODE_ENV') === NODE_ENV.DEVELOPMENT,
-        logging: configService.get('NODE_ENV') === NODE_ENV.DEVELOPMENT
-      })
-    })
-  ]
+        logging: configService.get('NODE_ENV') === NODE_ENV.DEVELOPMENT,
+      }),
+    }),
+  ],
 })
 export class DatabaseModule {}

@@ -6,7 +6,7 @@ import { UserService } from 'src/users/services/user.service';
 import { BankService } from 'src/banks/services/bank.service';
 import { InvoiceService } from '../services/invoice.service';
 import { InvoiceExternalService } from '../services/invoice-external.service';
-import { CsvParser } from 'src/utils/parsers/csv.parser';
+import { CsvParser } from '../utils/csv-parser.util';
 import { CURRENCIES } from 'src/common/constants/currencies.constants';
 
 @Injectable()

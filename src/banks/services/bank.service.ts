@@ -7,7 +7,7 @@ import { BankRepository } from "../repositories/bank.repository";
 export class BankService {
   constructor(private readonly _bankRepository: BankRepository) {}
 
-  async createBank(createBankDto: CreateBankDto): Promise<BankEntity> {
+  async create(createBankDto: CreateBankDto): Promise<BankEntity> {
     const bank = this._bankRepository.create({ ...createBankDto })
     return this._bankRepository.save(bank)
   }

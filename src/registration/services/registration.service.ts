@@ -13,7 +13,7 @@ export class RegistrationService {
 
   async registration(createUserDto: CreateUserDto): Promise<RegistrationResponseDto> {
     const banks = await this._bankService.findByIds(createUserDto.banks)
-    await this._userService.createUser(createUserDto, banks);
+    await this._userService.create(createUserDto, banks);
     return { message: 'Success' }
   }
 }

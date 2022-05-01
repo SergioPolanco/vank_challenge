@@ -10,6 +10,7 @@ import { InvoiceRepository } from './repositories/invoice.repository';
 import { InvoiceTask } from './tasks/invoice.task';
 import { InvoiceExternalService } from './services/invoice-external.service';
 import { InvoicePopulator } from './populators/invoices.populator';
+import { InvoiceController } from './controllers/invoice.controller';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { InvoicePopulator } from './populators/invoices.populator';
     BankModule
   ],
   providers: [InvoiceService, InvoiceExternalService, InvoicePopulator, InvoiceTask],
-  exports: [InvoiceService]
+  exports: [InvoiceService],
+  controllers: [InvoiceController]
 })
 export class InvoiceModule {}

@@ -30,7 +30,7 @@ export class InvoicePopulator {
         const user = await this._userService.findOne(vendorId)
         const bank = await this._bankService.findById(bankId)
         const invoiceObj = this._buildInvoiceData(invoice)
-        await this._invoiceService.createInvoice(invoiceObj, user, bank)
+        await this._invoiceService.create(invoiceObj, user, bank)
       } catch (error) {
         this.logger.log(`Error saving invoice: ${invoice[0]}`, error)
       }

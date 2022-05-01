@@ -19,11 +19,14 @@ import { NODE_ENV } from "./constants/app.constants";
           NODE_ENV.PRODUCTION
         ),
         INVOICE_FILE_URL: Joi.string().required(),
+        CURRENCY_CONVERTER_URL: Joi.string().required(),
+        FREE_CURRENCY_API_KEY:  Joi.string().required(),
         DB_HOST: Joi.string().required(),
         DB_PORT: Joi.number().required(),
         DB_USER: Joi.string().required(),
         DB_PASSWORD: Joi.string().required(),
-        DB_NAME: Joi.string().required()
+        DB_NAME: Joi.string().required(),
+        API_VERSION: Joi.string().required()
       })
     }),
     ScheduleModule.forRoot(),

@@ -12,7 +12,7 @@ export class InvoiceEntity extends AbstractEntity {
   @ManyToOne(
     () => UserEntity,
     user => user.invoices,
-    { nullable: false }
+    { nullable: false, eager: true }
   )
   @JoinColumn({ name: "vendor_id" })
   public vendor: UserEntity;

@@ -16,7 +16,7 @@ export class BankPopulator implements OnApplicationBootstrap {
   async insertBanks(): Promise<void>{
     for (const bank of BANKS) {
       try {
-        await this._bankService.createBank(bank)
+        await this._bankService.create(bank)
       } catch (error) {
         this.logger.log(`Error saving bank: ${bank.name}`, error)
       }

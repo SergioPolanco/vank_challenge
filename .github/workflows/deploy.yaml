@@ -19,6 +19,6 @@ jobs:
       - name: Run tests
         run: npm run test
       - name: Run audit
-        run: npm run audit
+        run: npm audit
       - name: Build App
         run : npm run build

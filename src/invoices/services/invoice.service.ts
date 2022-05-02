@@ -106,7 +106,7 @@ export class InvoiceService {
       return this._correncyToDecimal(value);
     }
 
-    return this._correncyToDecimal(value) * currencyValue;
+    return this._correncyToDecimal(value * currencyValue);
   }
 
   private _correncyToDecimal(value: number): number {

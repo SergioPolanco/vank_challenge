@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app';
+import { AllExceptionsFilter } from './common/exceptions/exception-filter.exception';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -28,6 +29,8 @@ async function bootstrap() {
     .setDescription('The Vank API description')
     .setVersion('1.0')
     .build();
+
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

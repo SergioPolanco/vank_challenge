@@ -4,6 +4,8 @@ import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserEntity } from '../entities/user.entity';
 import { BankEntity } from 'src/banks/entities/bank.entity';
 import { UserRepository } from '../repositories/user.repository';
+import { response } from 'express';
+import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError';
 
 @Injectable()
 export class UserService {
@@ -19,12 +21,11 @@ export class UserService {
   async create(
     createUserDto: CreateUserDto,
     banks: BankEntity[],
-  ): Promise<UserEntity> {
-    const user = this._userRepository.create({
+  ): Promise<void> {
+    await this._userRepository.insert({
       ...createUserDto,
       banks,
     });
-    return this._userRepository.save(user);
   }
 
   async update(
@@ -40,7 +41,10 @@ export class UserService {
       .where('internalCode = :internalCode', { internalCode })
       .returning(['tributaryId', 'currency'])
       .updateEntity(true)
-      .execute();
-    return user.raw[0];
+      .execute()
+      .then((response) => response.raw[0]);
+
+    if (!user) throw new EntityNotFoundError(UserEntity, internalCode);
+    return user;
   }
 }

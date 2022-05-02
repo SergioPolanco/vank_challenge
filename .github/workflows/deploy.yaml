@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  install_and_build:
+  build_and_chek:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,21 +16,9 @@ jobs:
           node-version: '16.x'
       - name: Install dependencies
         run: npm install
-      - name: Build App
-        run : npm run build
-
-  test:
-    needs: install_and_build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-    
-    steps:
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-
       - name: Run tests
         run: npm run test
+      - name: Run audit
+        run: npm run audit
+      - name: Build App
+        run : npm run build

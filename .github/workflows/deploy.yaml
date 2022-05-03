@@ -76,7 +76,7 @@ jobs:
       - name: echo result
         run: cat docker-compose.yaml
       - name: Deploy Api image
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
+        run: docker -H ${{ secrets.DOCKER_URL }} pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
       - name: Deploy stack
         run: docker stack deploy vank -c docker-compose.yaml
       - name: Force update Api

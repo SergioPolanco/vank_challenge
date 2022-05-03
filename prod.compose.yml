@@ -1,18 +1,9 @@
 version: '3.8'
 
 services:
-    db:
-      container_name: vank-db-${NODE_ENV}
-      image: postgres:14
-      ports: 
-        - ${DB_PORT}:5432
-      environment:
-        POSTGRES_USER: ${DB_USER}
-        POSTGRES_PASSWORD: ${DB_PASSWORD}
-        POSTGRES_DB: ${DB_NAME}
     api:
         container_name: vank-api-${NODE_ENV}
-        image: vank-api-${NODE_ENV}:1.0.0
+        image: ${API_IMAGE_REGISTRY}/${API_IMAGE_NAME}:${API_IMAGE_TAG}
         build:
             context: .
             dockerfile: ./Dockerfile

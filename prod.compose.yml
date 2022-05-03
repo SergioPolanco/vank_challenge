@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
     api:
-        container_name: vank-api-${NODE_ENV}
         image: ${API_IMAGE_REGISTRY}/${API_IMAGE_NAME}:${API_IMAGE_TAG}
         build:
             context: .

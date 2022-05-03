@@ -70,12 +70,12 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           if_key_exists: replace
       - uses: actions/checkout@v2
-      - name: Compile docker-compose.yml
+      - name: Compile docker-compose.yaml
         run: docker-compose -f base.compose.yml -f prod.compose.yml config > docker-compose.yaml
       - name: echo result
         run: cat docker-compose.yaml
       - name: Deploy Api image
-        run: docker pull ${{ env.DOCKERHUB_USERNAME }}/${{ env.API_IMAGE_NAME }}:${{ env.API_IMAGE_TAG }}
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
       - name: Deploy stack
         run: docker stack deploy vank -c docker-compose.yaml
       - name: Force update Api

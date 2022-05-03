@@ -71,7 +71,7 @@ jobs:
           if_key_exists: replace
       - uses: actions/checkout@v2
       - name: Compile docker-compose.yml
-        run: docker-compose -f base.compose.yaml -f prod.compose.yaml config > docker-compose.yaml
+        run: docker-compose -f base.compose.yml -f prod.compose.yml config > docker-compose.yaml
       - name: echo result
         run: cat docker-compose.yaml
       - name: Deploy Api image

@@ -7,8 +7,6 @@ services:
         build:
             context: .
             dockerfile: ./Dockerfile
-        depends_on:
-          - db
         ports:
             - ${PORT}:${PORT}
             - 9229:9229

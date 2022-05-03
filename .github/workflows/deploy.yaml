@@ -62,7 +62,6 @@ jobs:
       API_IMAGE_REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
       API_IMAGE_NAME: ${{ secrets.API_IMAGE_NAME }}
       API_IMAGE_TAG: ${{ secrets.API_IMAGE_TAG }}
-      DOCKER_HOST: tcp://172.18.0.1:2376
     steps:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
@@ -71,12 +70,14 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           if_key_exists: replace
       - uses: actions/checkout@v2
+      - name: Init docker swarm
+        run: bash init_swarm.sh
       - name: Compile docker-compose.yaml
         run: docker-compose -f base.compose.yml -f prod.compose.yml config > docker-compose.yaml
       - name: echo result
         run: cat docker-compose.yaml
       - name: Deploy Api image
-        run: docker -H ${{ secrets.DOCKER_URL }} pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
       - name: Deploy stack
         run: docker stack deploy vank -c docker-compose.yaml
       - name: Force update Api

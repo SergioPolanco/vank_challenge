@@ -62,6 +62,7 @@ jobs:
       API_IMAGE_REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
       API_IMAGE_NAME: ${{ secrets.API_IMAGE_NAME }}
       API_IMAGE_TAG: ${{ secrets.API_IMAGE_TAG }}
+      DOCKER_HOST: tcp://172.18.0.1:2376
     steps:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2

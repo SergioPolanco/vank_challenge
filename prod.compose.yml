@@ -1,20 +1,20 @@
 version: '3.8'
 
 services:
-    api:
-        image: ${API_IMAGE_REGISTRY}/${API_IMAGE_NAME}:${API_IMAGE_TAG}
-        ports:
-            - ${PORT}:${PORT}
-            - 9229:9229
-        environment:
-          PORT: ${PORT}
-          NODE_ENV: ${NODE_ENV}
-          INVOICE_FILE_URL: ${INVOICE_FILE_URL}
-          CURRENCY_CONVERTER_URL: ${CURRENCY_CONVERTER_URL}
-          FREE_CURRENCY_API_KEY: ${FREE_CURRENCY_API_KEY}
-          API_VERSION: ${API_VERSION}
-          DB_HOST: ${DB_HOST}
-          DB_PORT: ${DB_PORT}
-          DB_USER: ${DB_USER}
-          DB_PASSWORD: ${DB_PASSWORD}
-          DB_NAME: ${DB_NAME}
+  api:
+    image: ${API_IMAGE_REGISTRY}/${API_IMAGE_NAME}:${API_IMAGE_TAG}
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+    environment:
+      PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+      INVOICE_FILE_URL: ${INVOICE_FILE_URL}
+      CURRENCY_CONVERTER_URL: ${CURRENCY_CONVERTER_URL}
+      FREE_CURRENCY_API_KEY: ${FREE_CURRENCY_API_KEY}
+      API_VERSION: ${API_VERSION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}

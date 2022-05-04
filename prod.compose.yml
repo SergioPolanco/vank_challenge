@@ -4,8 +4,7 @@ services:
   api:
     image: ${API_IMAGE_REGISTRY}/${API_IMAGE_NAME}:${API_IMAGE_TAG}
     ports:
-      - ${PORT}:${PORT}
-      - 9229:9229
+      - 3000:3000
     environment:
       PORT: ${PORT}
       NODE_ENV: ${NODE_ENV}

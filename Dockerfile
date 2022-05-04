@@ -2,6 +2,8 @@ FROM node:16.15.0-alpine3.15 AS dev
 
 WORKDIR /usr/src/app
 
+EXPOSE 3000
+
 RUN apk add --no-cache bash
 
 COPY package*.json ./

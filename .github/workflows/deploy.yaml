@@ -48,7 +48,6 @@ jobs:
     needs: build_and_upload_image
     runs-on: ubuntu-latest
     env:
-      PORT: ${{ secrets.API_PORT }}
       NODE_ENV: ${{ secrets.NODE_ENV }}
       INVOICE_FILE_URL: ${{ secrets.INVOICE_FILE_URL }}
       CURRENCY_CONVERTER_URL: ${{ secrets.CURRENCY_CONVERTER_URL }}

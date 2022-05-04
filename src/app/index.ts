@@ -13,7 +13,6 @@ import { NODE_ENV } from './constants/app.constants';
   imports: [
     ConfigModule.forRoot({
       validationSchema: Joi.object({
-        PORT: Joi.number().default(3000),
         NODE_ENV: Joi.string()
           .required()
           .valid(NODE_ENV.DEVELOPMENT, NODE_ENV.PRODUCTION),

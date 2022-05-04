@@ -14,7 +14,7 @@ async function bootstrap() {
   const reflector = app.get(Reflector);
   const configService = app.get(ConfigService);
   const apiVersion = configService.get<string>('API_VERSION');
-  const PORT = +configService.get<number>('PORT') || 3000;
+  const PORT = +configService.get<number>('PORT');
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));

@@ -81,17 +81,25 @@ export class InvoiceService {
         creditTotal,
       );
 
-      invoice.total = newTotal;
-      invoice.creditTotal = newCreditTotal;
-      invoice.paymentTotal = newPaymentTotal;
-      invoice.currency = CURRENCIES[currencyToUse];
+      invoice.total = newTotal.value;
+      invoice.creditTotal = newCreditTotal.value;
+      invoice.paymentTotal = newPaymentTotal.value;
+      invoice.currency = CURRENCIES[newTotal.currency];
     }
 
     return _invoices;
   }
 
-  private async _convertCurrency(from: string, to: string, value: number) {
-    if (from === to) return this._correncyToDecimal(value);
+  private async _convertCurrency(
+    from: string,
+    to: string,
+    value: number,
+  ): Promise<{ currency: string; value: number }> {
+    if (from === to)
+      return {
+        currency: from,
+        value: this._correncyToDecimal(value),
+      };
 
     const typeKey = `${from}_${to}`;
     let currencyValue: number;
@@ -103,10 +111,16 @@ export class InvoiceService {
       );
       currencyValue = response[typeKey];
     } catch (error) {
-      return this._correncyToDecimal(value);
+      return {
+        currency: from,
+        value: this._correncyToDecimal(value),
+      };
     }
 
-    return this._correncyToDecimal(value * currencyValue);
+    return {
+      currency: to,
+      value: this._correncyToDecimal(value * currencyValue),
+    };
   }
 
   private _correncyToDecimal(value: number): number {

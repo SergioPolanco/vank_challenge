@@ -14,7 +14,7 @@ async function bootstrap() {
   const reflector = app.get(Reflector);
   const configService = app.get(ConfigService);
   const apiVersion = configService.get<string>('API_VERSION');
-  // const PORT = +configService.get<number>('PORT');
+  const PORT = +configService.get<number>('PORT');
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
@@ -31,10 +31,11 @@ async function bootstrap() {
     .build();
 
   app.useGlobalFilters(new AllExceptionsFilter());
+  app.enableCors();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(3000);
+  await app.listen(PORT);
 }
 
 bootstrap();

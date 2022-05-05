@@ -31,7 +31,10 @@ export class InvoiceEntity extends AbstractEntity {
   @Column({ type: 'integer' })
   public creditTotal: number;
 
-  @ManyToOne(() => BankEntity, (bank) => bank.invoices, { nullable: false })
+  @ManyToOne(() => BankEntity, (bank) => bank.invoices, {
+    nullable: false,
+    eager: true,
+  })
   @JoinColumn({ name: 'bank_id' })
   public bank: BankEntity;
 

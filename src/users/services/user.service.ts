@@ -4,7 +4,6 @@ import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserEntity } from '../entities/user.entity';
 import { BankEntity } from 'src/banks/entities/bank.entity';
 import { UserRepository } from '../repositories/user.repository';
-import { response } from 'express';
 import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError';
 
 @Injectable()
@@ -32,11 +31,12 @@ export class UserService {
     updateUserDto: UpdateUserDto,
     internalCode: number,
   ): Promise<UserEntity> {
+    const { tributaryId, currency } = updateUserDto;
     const user = await this._userRepository
       .createQueryBuilder()
       .update<UserEntity>(UserEntity, {
-        tributaryId: updateUserDto.tributaryId,
-        currency: updateUserDto.currency,
+        ...(tributaryId && { tributaryId }),
+        ...(currency && { currency }),
       })
       .where('internalCode = :internalCode', { internalCode })
       .returning(['tributaryId', 'currency'])

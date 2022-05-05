@@ -19,7 +19,7 @@ export class InvoiceController {
   @UseInterceptors(CacheInterceptor)
   @Get()
   @ApiOperation({ summary: 'Retrieve incoices' })
-  @ApiOkResponse({ type: InvoiceDto })
+  @ApiOkResponse({ type: InvoiceDto, isArray: true })
   async findAll(
     @Query() queryString: QueryStringInvoiceDto,
   ): Promise<InvoiceEntity[]> {

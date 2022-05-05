@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Logger,
 } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 import { Request, Response } from 'express';
 import {
   QueryFailedError,
@@ -42,6 +43,10 @@ export class AllExceptionsFilter implements ExceptionFilter {
       case CannotCreateEntityIdMapError:
         status = HttpStatus.UNPROCESSABLE_ENTITY;
         message = (exception as CannotCreateEntityIdMapError).message;
+        break;
+      case BadRequestException:
+        status = HttpStatus.BAD_REQUEST;
+        message = (exception as BadRequestException).getResponse();
         break;
       default:
         status = HttpStatus.INTERNAL_SERVER_ERROR;

@@ -8,10 +8,12 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - ${PORT}:${PORT}
-      - 9229:9229
+      - 3000:3000
+    volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules
     environment:
-      PORT: ${PORT}
+      # PORT: ${PORT}
       NODE_ENV: ${NODE_ENV}
       INVOICE_FILE_URL: ${INVOICE_FILE_URL}
       CURRENCY_CONVERTER_URL: ${CURRENCY_CONVERTER_URL}

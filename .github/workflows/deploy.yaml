@@ -72,7 +72,7 @@ jobs:
       - name: Init docker swarm
         run: bash init_swarm.sh
       - name: Create docker context
-        run: docker context create \ --docker host=ssh://sergio@contabonode1@lalvarez.dev \
+        run: docker context create --docker "host=ssh://sergio@contabonode1@lalvarez.dev" contabo
       - name: Use docker context
         run: docker context use contabo
       - name: Compile docker-compose.yaml
@@ -80,8 +80,8 @@ jobs:
       - name: echo result
         run: cat docker-compose.yaml
       - name: Deploy Api image
-        run: docker -H ${{ secrets.DOCKER_URL }} pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.API_IMAGE_NAME }}:${{ secrets.API_IMAGE_TAG }}
       - name: Deploy stack
-        run: docker -H ${{ secrets.DOCKER_URL }} stack deploy vank -c docker-compose.yaml
+        run: docker stack deploy vank -c docker-compose.yaml
       - name: Force update Api
-        run: docker -H ${{ secrets.DOCKER_URL }} service update --force vank_api
+        run: docker service update --force vank_api

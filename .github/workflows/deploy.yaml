@@ -71,6 +71,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Init docker swarm
         run: bash init_swarm.sh
+      - name: Create docker context
+        run: docker context create \ --docker host=ssh://sergio@contabonode1@lalvarez.dev \
+      - name: Use docker context
+        run: docker context use contabo
       - name: Compile docker-compose.yaml
         run: docker-compose -f base.compose.yml -f prod.compose.yml config > docker-compose.yaml
       - name: echo result

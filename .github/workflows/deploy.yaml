@@ -72,7 +72,7 @@ jobs:
       - name: Init docker swarm
         run: bash init_swarm.sh
       - name: Create docker context
-        run: docker context create --docker "host=ssh://sergio@contabonode1.lalvarez.dev" contabo
+        run: docker context create --docker host=ssh://sergio@contabonode1.lalvarez.dev contabo
       - name: Use docker context
         run: docker context use contabo
       - name: Compile docker-compose.yaml

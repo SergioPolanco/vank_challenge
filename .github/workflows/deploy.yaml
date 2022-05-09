@@ -75,7 +75,7 @@ jobs:
       - name: Init docker swarm
         run: bash init_swarm.sh
       - name: Check ssh folder
-        run: ls .ssh/
+        run: cat ~/.ssh/known_hosts
       - name: Create docker context
         run: docker context create --docker host=ssh://sergio@contabonode1.lalvarez.dev contabo
       - name: Use docker context
